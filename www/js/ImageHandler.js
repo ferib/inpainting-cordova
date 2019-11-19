@@ -39,6 +39,17 @@ let ImageHandler = function () {
         return convertBase64ToFile(lastbase64img.src);
     };
 
+    let _saveLastResponseImage = function(){
+        let storage = window.localStorage;
+        storage.setItem(storage.length, lastbase64img.src);
+    };
+
+    let _blobToImg = function(blob){
+        let img = new Image();
+        img.src = _arrayBufferToBase64(blob.buffer);
+        return img;
+    };
+
     //snippets from Stackoverflow
     const convertBase64ToFile = function (image) {
         const byteString = atob(image.split(',')[1]);
@@ -52,12 +63,24 @@ let ImageHandler = function () {
         });
     };
 
+    function _arrayBufferToBase64( buffer ) {
+        let binary = '';
+        let bytes = new Uint8Array( buffer );
+        let len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode( bytes[ i ] );
+        }
+        return window.btoa( binary );
+    }
+
     return {
         init: _init,
         UpdateImage: _UpdateImage,
         GetLastBase64img: _GetLastBase64img,
         SetLastBase64img: _SetLastBase64img,
-        GetLastimg: _GetLastimg
+        GetLastimg: _GetLastimg,
+        saveLastResponseImage: _saveLastResponseImage,
+        blobToImg: _blobToImg
     };
 }();
 

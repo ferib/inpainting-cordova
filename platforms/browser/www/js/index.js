@@ -68,17 +68,16 @@ $(function(){
                 .css("position", "absolute")
                 .css("visibility", "hidden");
             $('#preview')
-                //.css("background-size", c.width + "px " + c.height + "px")
-                //.css("width", c.width + "px")
-                //.css("height", c.height + "px")
-                //.css("min-height", c.height + "px")
                 .css("background-image", "url('" + img.src + "')");
         });
     });
 
     $('#inpaint').click(function () {
         $('#preview').addClass("img-busy");
-        $("#inpaint").addClass("btn-hide");
+        $("#inpaint").attr("disabled","true");
+        $("#reset").attr("disabled","true");
+        $("#galery").attr("disabled","true");
+
         $('#mask').attr("src", MaskHandler.getCanvas().toDataURL())
             .removeClass("mask-finished");
 
@@ -90,8 +89,10 @@ $(function(){
             MaskHandler.clearMask();
             $('#preview').css("background-image", "url('data:image/png;base64," + Inpaint.getLastResponse() + "')")
                 .removeClass("img-busy");
-            $("#inpaint").removeClass("btn-hide");
             $("#mask").addClass("mask-finished");
+            $("#inpaint").attr("disabled","false");
+            $("#reset").attr("disabled","false");
+            $("#galery").attr("disabled","false");
         });
     });
 
@@ -113,7 +114,22 @@ $(function(){
     });
 
     $("#galery").click(function(){
-        console.log("load galery");
+        $("#galery-list").empty();
+        $("#content").css("display","none");
+        $("#img-galery").css("display","block");
+
+        for(let i = 0; i < window.localStorage.length; i++)
+        {
+            let currentItem = window.localStorage.getItem(i);
+            if(currentItem == null){ continue; }
+
+            $("#galery-list").prepend( "<li><img class='galery-img' src=" + currentItem + "></li>");
+        }
+    });
+
+    $("#galery-close-bottom, #galery-close-top").click(function(){
+        $("#content").css("display","block");
+        $("#img-galery").css("display","none");
     });
 
     //Mouse events
@@ -133,13 +149,6 @@ $(function(){
             MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f);
         }
     });
-    /*
-    $('#preview').mouseup(function(e){
-        MaskHandler.OnMouseUp(e);
-    });
-    $('#preview').mouseleave(function(e){
-        MaskHandler.OnMouseLeave(e);
-    });
-     */
+
 });
 

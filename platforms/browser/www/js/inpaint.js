@@ -11,11 +11,19 @@ let Inpaint = function () {
     };
 
     let _inpaintDone = function(result, callback) {
+        if(result == null)
+        {
+            //Do correct error handeling... or prevent user from clicking #Inpaint when no img is selected
+            callback();
+            return;
+        }
+        navigator.vibrate(500);
         console.log("Finished Request");
         LastResponse = result;
         let img = new Image();
         img.src = "data:image/png;base64," + LastResponse;
         ImageHandler.SetLastBase64img(img);
+        ImageHandler.saveLastResponseImage();
         callback();
     };
 
@@ -37,7 +45,7 @@ let Inpaint = function () {
             processData: false,
             timeout: 300000, 		// 300 second timeout to avoid connection from breaking while server is still loading
             success: function(data){ _inpaintDone(data, callback) },
-            error: function(data){ funcResult = null}
+            error: function(data){ _inpaintDone(null, callback) }
         });
     };
 

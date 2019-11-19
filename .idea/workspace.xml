@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e7fabde-9338-4583-a504-dbba74811d0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/mobile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/MaskHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/ImageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/ImageHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/MaskHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/inpaint.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/inpaint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/browser/www/mobile.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/mobile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/ImageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/ImageHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/inpaint.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/inpaint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/mobile.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/mobile.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +71,7 @@
       <workItem from="1572882692941" duration="3097000" />
       <workItem from="1573307875333" duration="4975000" />
       <workItem from="1573506024978" duration="1841000" />
-      <workItem from="1574091971343" duration="41231000" />
+      <workItem from="1574091971343" duration="47835000" />
     </task>
     <servers />
   </component>

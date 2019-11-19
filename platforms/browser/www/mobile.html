@@ -21,6 +21,10 @@
             width: 100%;
             height: 35px;
         }
+        .button-orange:disabled{
+            border: 1px solid dimgray;
+            background-color: grey;
+        }
         .slider-orange {
             -webkit-appearance: none;
             width: 100%;
@@ -68,7 +72,7 @@
             margin-bottom: 115px;
             margin-top: -45px;
         }
-        #preview
+        .preview
         {
             //width: 100%;
             //height: auto;
@@ -83,7 +87,7 @@
             color: #dedede;
             background-color: #333;
         }
-        #preview-note
+        .preview-note
         {
             position: absolute;
             text-align: center;
@@ -104,8 +108,23 @@
             width: 100%;
             height: 100%;
         }
+        .galery-list
+        {
+           padding: 0;
+        }
+        .galery-img
+        {
+            display: block;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+        li{
+            list-style: none;
 
-        #polaroid-frame
+        }
+        .polaroid-frame
         {
             border-color: grey;
             border-style: solid;
@@ -118,6 +137,10 @@
         {
             height: auto;
             background-color: #fff;
+        }
+        #img-galery
+        {
+            display: none;
         }
         .img-busy
         {
@@ -160,11 +183,11 @@
 </head>
 <body>
 <div id="content">
-    <div id="polaroid-frame">
+    <div class="polaroid-frame">
         <form enctype="multipart/form-data" method="POST">
             <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-            <div id="preview">
-                <div id="preview-note">
+            <div class="preview" id="preview">
+                <div class="preview-note" id="preview-note">
                     <h1>Mobile inpainting</h1>
                     Tap Here<br><span style="font-size: 30px">To Take a Picture</span>
                 </div>
@@ -184,6 +207,21 @@
             </div>
 
         </form>
+    </div>
+</div>
+<div id="img-galery">
+    <div class="polaroid-frame">
+        <div class="polaroid-buttons">
+            <input type="button" class="button-orange" id="galery-close-top" value="back" />
+        </div>
+        <div class="preview">
+            <ul id="galery-list" class="galery-list">
+
+            </ul>
+        </div>
+        <div class="polaroid-buttons">
+            <input type="button" class="button-orange" id="galery-close-bottom" value="back" />
+        </div>
     </div>
 </div>
 <script defer src="js/index.js"></script>
