@@ -56,6 +56,7 @@ $(function(){
     //Image uploaded
     $("#Image").change(function(){
         //init canvas
+        MaskHandler.removeCanvas();
         ImageHandler.UpdateImage(this, function(){
             $('#preview-note').css("visibility", "hidden");
             $(this).css("visibility", "hidden");
@@ -64,17 +65,14 @@ $(function(){
             let c = MaskHandler.getCanvas();
 
             $('#Image')
-                .css("min-width", c.width)
-                .css("min-height", c.height)
+                .css("position", "absolute")
+                .css("visibility", "hidden");
             $('#preview')
-                .css("background-size", c.width + "px " + c.height + "px")
-                .css("width", c.width + "px")
-                .css("height", c.height + "px")
-                .css("min-height", c.height + "px")
+                //.css("background-size", c.width + "px " + c.height + "px")
+                //.css("width", c.width + "px")
+                //.css("height", c.height + "px")
+                //.css("min-height", c.height + "px")
                 .css("background-image", "url('" + img.src + "')");
-            $('#polaroid-frame')
-                .css("width", c.width + "px")
-                .css("height", c.height + 75 + "px"); //TODO: replace this with a global methode? instead of changing all divs individual
         });
     });
 
@@ -83,7 +81,11 @@ $(function(){
         $("#inpaint").addClass("btn-hide");
         $('#mask').attr("src", MaskHandler.getCanvas().toDataURL())
             .removeClass("mask-finished");
-        Inpaint.inpaintImage(ImageHandler.GetLastimg(), MaskHandler.canvasToFile(), function(){
+
+        var canvasFile = MaskHandler.canvasToFile();
+        //MaskHandler.removeCanvas(); //delete canvas to make space for img #Mask
+        MaskHandler.getCanvas().style.display = "none";
+        Inpaint.inpaintImage(ImageHandler.GetLastimg(), canvasFile, function(){
             //callback on image done
             MaskHandler.clearMask();
             $('#preview').css("background-image", "url('data:image/png;base64," + Inpaint.getLastResponse() + "')")
@@ -97,11 +99,39 @@ $(function(){
         MaskHandler.setLineWidth(this.value);
     });
 
+    $("#reset").click(function(){
+        MaskHandler.getCanvas().style.display = "none";
+        $("#inpaint").removeClass("btn-hide");
+        $('#preview').css("background-image", "")
+            .removeClass("img-busy");
+        $("#mask").addClass("mask-finished")
+            .attr("src","");
+        $('#Image')
+            .css("position", "relative")
+            .css("visibility", "visible");
+        $('#preview-note').css("visibility", "visible");
+    });
+
+    $("#galery").click(function(){
+        console.log("load galery");
+    });
+
     //Mouse events
     $('#preview').mousedown(function(e){
-        MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop);
+        let c = MaskHandler.getCanvas();
+        if(c != null)
+        {
+            let f = c.width / $(this).width();
+            MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f);
+        }
+
     }).mousemove(function(e){
-        MaskHandler.OnMouseMove(e, this.offsetLeft, this.offsetTop);
+        let c = MaskHandler.getCanvas();
+        if(c != null)
+        {
+            let f = c.width / $(this).width();
+            MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f);
+        }
     });
     /*
     $('#preview').mouseup(function(e){

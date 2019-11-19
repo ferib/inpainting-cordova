@@ -21,6 +21,12 @@ let MaskHandler = function () {
         ParentObj.appendChild(canvas);
     };
 
+    let _removeCanvas = function(ParentObj)
+    {
+        //canvas.style.display = 'none';
+        //canvas = null;
+    };
+
     let _canvasResize = function(width, height){
         if(canvas == null)
         {
@@ -119,18 +125,18 @@ let MaskHandler = function () {
     }
 
     //MouseEvents for Drawing
-    let _OnMouseDown = function(e, offsetLeft, offsetTop){
-        let mouseX = e.pageX - offsetLeft;
-        let mouseY = e.pageY - offsetTop;
+    let _OnMouseDown = function(e, offsetLeft, offsetTop, f){
+        let mouseX = (e.pageX - offsetLeft) * f;
+        let mouseY = (e.pageY - offsetTop) * f;
 
         paint = true;
         _addClick(mouseX, mouseY);
         _reDraw();
     };
 
-    let _OnMouseMove = function(e, offsetLeft, offsetTop){
+    let _OnMouseMove = function(e, offsetLeft, offsetTop, f){
         if(paint){
-            _addClick(e.pageX - offsetLeft, e.pageY - offsetTop, true);
+            _addClick((e.pageX - offsetLeft) * f, (e.pageY - offsetTop) * f, true);
             _reDraw();
         }
     };
@@ -166,7 +172,8 @@ let MaskHandler = function () {
         OnMouseLeave: _OnMouseLeave,
         setCanvas: _setCanvas,
         getCanvas: _getCanvas,
-        setLineWidth: _setLineWidth
+        setLineWidth: _setLineWidth,
+        removeCanvas: _removeCanvas
     };
 }();
 
