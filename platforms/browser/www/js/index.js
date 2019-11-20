@@ -74,9 +74,9 @@ $(function(){
 
     $('#inpaint').click(function () {
         $('#preview').addClass("img-busy");
-        $("#inpaint").attr("disabled","true");
-        $("#reset").attr("disabled","true");
-        $("#galery").attr("disabled","true");
+        $("#inpaint").attr("disabled",true);
+        $("#reset").attr("disabled",true);
+        $("#galery").attr("disabled",true);
 
         $('#mask').attr("src", MaskHandler.getCanvas().toDataURL())
             .removeClass("mask-finished");
@@ -90,9 +90,9 @@ $(function(){
             $('#preview').css("background-image", "url('data:image/png;base64," + Inpaint.getLastResponse() + "')")
                 .removeClass("img-busy");
             $("#mask").addClass("mask-finished");
-            $("#inpaint").attr("disabled","false");
-            $("#reset").attr("disabled","false");
-            $("#galery").attr("disabled","false");
+            $("#inpaint").attr("disabled",false);
+            $("#reset").attr("disabled",false);
+            $("#galery").attr("disabled",false);
         });
     });
 
@@ -123,13 +123,19 @@ $(function(){
             let currentItem = window.localStorage.getItem(i);
             if(currentItem == null){ continue; }
 
-            $("#galery-list").prepend( "<li><img class='galery-img' src=" + currentItem + "></li>");
+            $("#galery-list").prepend( "<li><div class='img-box'><span class=\"close\">&times;</span><img class='galery-img' src=" + currentItem + "></div></li>");
         }
     });
 
     $("#galery-close-bottom, #galery-close-top").click(function(){
         $("#content").css("display","block");
         $("#img-galery").css("display","none");
+    });
+
+    $('.close').on("click", function(event){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        console.log("delete img: ");
     });
 
     //Mouse events

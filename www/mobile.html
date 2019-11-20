@@ -115,10 +115,11 @@
         .galery-img
         {
             display: block;
-            width: 80%;
+            width: 100%;
             margin: auto;
             margin-bottom: 15px;
             border-radius: 10px;
+            border: 1px solid gray;
         }
         li{
             list-style: none;
@@ -126,10 +127,10 @@
         }
         .polaroid-frame
         {
-            border-color: grey;
+            /*border-color: grey;
             border-style: solid;
             border-radius: 6px;
-            border-width: 3px;
+            border-width: 3px;*/
             background-color: #fefefe;
             padding: 3px;
         }
@@ -178,6 +179,35 @@
             width: 100%;
             outline: none;
             opacity: 0;
+        }
+        .close {
+            text-align: center;
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            margin-left: 10px;
+            margin-top: 10px;
+            position: absolute;
+            background-color: grey;
+            border-radius: 40px;
+            width: 30px;
+            height: 30px;
+            opacity: 0.6;
+            display: block;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .img-box
+        {
+            display: block;
+            margin: auto;
+            width: 80%;
         }
     </style>
 </head>
