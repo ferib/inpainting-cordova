@@ -2,27 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e7fabde-9338-4583-a504-dbba74811d0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/res/screen/android/inpaint_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/screen/android/splashscreen.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/browser.json" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/browser.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/platform_www/cordova_plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/platform_www/cordova_plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/cordova_plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/cordova_plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/ImageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/ImageHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/mobile.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/mobile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/browser.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/browser.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/fetch.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fetch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/ImageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/ImageHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/mobile.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/mobile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/screen/android/inpaint_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/screen/android/icon.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +71,7 @@
       <workItem from="1573307875333" duration="4975000" />
       <workItem from="1573506024978" duration="1841000" />
       <workItem from="1574091971343" duration="65304000" />
-      <workItem from="1574275938359" duration="1025000" />
+      <workItem from="1574275938359" duration="2467000" />
     </task>
     <servers />
   </component>

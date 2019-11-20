@@ -33,4 +33,5 @@
     </plugin>
     <plugin name="cordova-plugin-vibration" spec="^3.1.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.3" />
+    <icon src="res/screen/android/icon.png" width="512" height="512"/>
 </widget>
