@@ -2,10 +2,10 @@
 <widget id="com.ferib.inpaint" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>inpaint</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        inpainting mobile - Removes unwanted objects from images.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="admin@ferib.dev" href="https://ferib.dev">
+        Ferib Hellscream
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -15,4 +15,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <splash src="res/screen/ios/splashscreen.png" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="1000" />
 </widget>

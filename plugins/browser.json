@@ -9,6 +9,18 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.ferib.inpaint"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "com.ferib.inpaint"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.ferib.inpaint"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.ferib.inpaint"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.ferib.inpaint"
     }
   },
   "dependent_plugins": {}

@@ -4,8 +4,8 @@
   "name": "inpaint",
   "short_name": "inpaint",
   "version": "com.ferib.inpaint",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "author": "Apache Cordova Team",
+  "description": "inpainting mobile - Removes unwanted objects from images.",
+  "author": "Ferib Hellscream",
   "icons": [],
   "start_url": "index.html"
 }

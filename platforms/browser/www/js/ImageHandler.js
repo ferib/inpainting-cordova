@@ -41,7 +41,7 @@ let ImageHandler = function () {
 
     let _saveLastResponseImage = function(){
         let storage = window.localStorage;
-        storage.setItem(storage.length, lastbase64img.src);
+        storage.setItem("ls-img-id-" + storage.length, lastbase64img.src);
     };
 
     let _blobToImg = function(blob){
