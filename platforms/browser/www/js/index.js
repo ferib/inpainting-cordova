@@ -40,13 +40,13 @@ var app = {
 
     onmouseup: function(e)
     {
-        MaskHandler.OnMouseUp(e);
+        //MaskHandler.OnMouseUp(e);
         //console.log("onmouseup: " + e);
     },
 
     onmouseleave: function(e)
     {
-        MaskHandler.OnMouseLeave(e);
+        //MaskHandler.OnMouseLeave(e);
         //console.log("onmouseleave: " + e);
     },
 
@@ -157,10 +157,10 @@ $(function(){
             let f = c.width / $(this).width();
             MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f);
         }
-    }).mousemove(function (e) {
-        MaskHandler.OnMouseUp(e);
     }).mouseleave(function (e) {
         MaskHandler.OnMouseLeave(e);
+    }).mouseup(function(e){
+        MaskHandler.OnMouseUp(e);
     })
 
 });
