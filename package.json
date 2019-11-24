@@ -1,8 +1,8 @@
 {
     "name": "com.ferib.inpaint",
-    "displayName": "inpainting mobile",
+    "displayName": "inpaint",
     "version": "1.0.0",
-    "description": "inpainting mobile - Removes unwanted objects from images.",
+    "description": "A sample Apache Cordova application that responds to the deviceready event.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +10,8 @@
     "keywords": [
         "ecosystem:cordova"
     ],
-    "author": "Ferib Hellscream",
-    "license": "",
+    "author": "Apache Cordova Team",
+    "license": "Apache-2.0",
     "cordova": {
         "plugins": {
             "cordova-plugin-whitelist": {},
@@ -33,6 +33,7 @@
         "cordova-plugin-splashscreen": "^5.0.3",
         "cordova-plugin-vibration": "^3.1.1",
         "cordova-plugin-whitelist": "1",
+        "cordova-res": "^0.8.1",
         "es6-promise-plugin": "^4.2.2"
     }
 }

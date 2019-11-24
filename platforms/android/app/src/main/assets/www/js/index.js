@@ -17,7 +17,7 @@ var app = {
         window.setTimeout(function () {
             navigator.splashscreen.hide();
         }, 1500);
-        */
+*/
     },
 
     onDeviceReady: function() {

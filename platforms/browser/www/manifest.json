@@ -1,11 +1,17 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "inpaint",
-  "short_name": "inpaint",
+  "name": "inpainting mobile",
+  "short_name": "inpainting mobile",
   "version": "com.ferib.inpaint",
   "description": "inpainting mobile - Removes unwanted objects from images.",
   "author": "Ferib Hellscream",
-  "icons": [],
+  "icons": [
+    {
+      "src": "resources/android/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "start_url": "index.html"
 }

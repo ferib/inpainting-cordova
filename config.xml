@@ -22,9 +22,10 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <splash src="res/screen/ios/splashscreen.png" />
+    <splash src="resources/android/splashscreen.png" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="SplashScreenDelay" value="1000" />
+    <icon height="512" src="resources/android/icon.png" width="512" />
     <engine name="android" spec="^8.1.0" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.2" />
@@ -33,5 +34,4 @@
     </plugin>
     <plugin name="cordova-plugin-vibration" spec="^3.1.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.3" />
-    <icon src="res/screen/android/icon.png" width="512" height="512"/>
 </widget>

@@ -14,7 +14,7 @@
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
         <param name="onload" value="true" />
     </feature>
-    <name>inpaint</name>
+    <name>inpainting mobile</name>
     <description>
         inpainting mobile - Removes unwanted objects from images.
     </description>
@@ -29,7 +29,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <splash src="res/screen/ios/splashscreen.png" />
+    <splash src="resources/android/splashscreen.png" />
+    <icon height="512" src="resources/android/icon.png" width="512" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="AutoHideSplashScreen" value="true" />
