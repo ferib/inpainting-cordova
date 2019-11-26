@@ -4,12 +4,14 @@ let MaskHandler = function () {
     let clickY;
     let clickDrag;
     let paint;
+    let dotWidth;
     let sLineWidth = 20;
 
     let _init = function(){
         clickX = [];
         clickY = [];
         clickDrag = [];
+        dotWidth = [];
     };
 
     //TEST1: document.getElementById("preview").appendChild(canvas)
@@ -47,6 +49,7 @@ let MaskHandler = function () {
        clickX.length = 0;
        clickY.length = 0;
        clickDrag.length = 0;
+       dotWidth.length = 0;
        let context = canvas.getContext("2d");
        context.clearRect(0, 0, context.canvas.width, context.canvas.height); //Clear canvas
    };
@@ -55,6 +58,7 @@ let MaskHandler = function () {
         clickX.push(x);
         clickY.push(y);
         clickDrag.push(dragging);
+        dotWidth.push(sLineWidth);
     };
 
     let _reDraw = function(){
@@ -68,10 +72,11 @@ let MaskHandler = function () {
 
         context.strokeStyle = "#df4b26";
         context.lineJoin = "round";
-        context.lineWidth = sLineWidth;
+        //context.lineWidth = sLineWidth;
 
         for(let i=0; i < clickX.length; i++) {
             context.beginPath();
+            context.lineWidth = dotWidth[i];
             if(clickDrag[i] && i){
                 context.moveTo(clickX[i-1], clickY[i-1]);
             }else{
@@ -86,6 +91,7 @@ let MaskHandler = function () {
     let _setLineWidth = function(newLineWith)
     {
         sLineWidth = newLineWith;
+        dotWidth[dotWidth.length-1] = sLineWidth;
         _reDraw();
     };
 
@@ -135,7 +141,7 @@ let MaskHandler = function () {
     };
 
     let _OnMouseMove = function(e, offsetLeft, offsetTop, f){
-        if(paint){
+        if(paint) {
             _addClick((e.pageX - offsetLeft) * f, (e.pageY - offsetTop) * f, true);
             _reDraw();
         }
@@ -159,6 +165,25 @@ let MaskHandler = function () {
         return canvas;
     };
 
+    let _isCanvasUsed = function () {
+        return clickX.length > 0;
+    };
+
+    let _removeLastPaint = function (){
+        let LastSize = dotWidth[dotWidth.length-1];
+        for(let i=dotWidth.length; i >= 0; i++) {
+            if(dotWidth[i] !== LastSize)
+            {
+                clickX.length = i;
+                clickY.length = i;
+                clickDrag.length = i;
+                dotWidth.length = i;
+                _reDraw();
+                break;
+            }
+        }
+    };
+
     return {
         init: _init,
         canvasResize: _canvasResize,
@@ -173,7 +198,9 @@ let MaskHandler = function () {
         setCanvas: _setCanvas,
         getCanvas: _getCanvas,
         setLineWidth: _setLineWidth,
-        removeCanvas: _removeCanvas
+        removeCanvas: _removeCanvas,
+        isCanvasUsed: _isCanvasUsed,
+        removeLastPaint: _removeLastPaint
     };
 }();
 

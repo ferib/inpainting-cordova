@@ -7,25 +7,33 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ferib.inpaint"
-    },
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "com.ferib.inpaint"
     },
-    "cordova-plugin-camera": {
-      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.ferib.inpaint"
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.ferib.inpaint"
     },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ferib.inpaint"
+    },
+    "cordova-plugin-admob-free": {
+      "ADMOB_APP_ID": "ca-app-pub-8014088211781182~9779710924",
+      "PLAY_SERVICES_VERSION": "11.0.4",
       "PACKAGE_NAME": "com.ferib.inpaint"
     }
   },
   "dependent_plugins": {
     "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.ferib.inpaint"
+    },
+    "cordova-promise-polyfill": {
+      "PACKAGE_NAME": "com.ferib.inpaint"
+    },
+    "cordova-admob-sdk": {
+      "PLAY_SERVICES_VERSION": "11.0.4",
       "PACKAGE_NAME": "com.ferib.inpaint"
     }
   }

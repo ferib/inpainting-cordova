@@ -4,13 +4,12 @@
     <title>Inpainting API test</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Long+Cang&display=swap" rel="stylesheet">
     <style>
         body{
             margin: auto;
             background-color: #eee;
+            padding-bottom: 50px;
         }
         .button-orange {
             border: 1px solid #AD3B1F;
@@ -74,9 +73,6 @@
         }
         .preview
         {
-        //width: 100%;
-        //height: auto;
-        //min-height: 500px;
             border-color: gray;
             border-style: solid;
             border-radius: 3px;
@@ -208,10 +204,51 @@
             margin: auto;
             width: 80%;
         }
+
+        /* added */
+        .test-ad-banner
+        {
+            display: block;
+            width: 320px;
+            height: 50px;
+            margin: auto;
+        }
+        .test-ad-frame
+        {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            margin:auto;
+        }
+        .test-ad-frame2
+        {
+            top:0;
+            left: 0;
+            display: block;
+            padding-top: 50px;
+            position: fixed;
+            width: 100%;
+            margin: auto;
+            background-color: black;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 1;
+        }
+
+        .test-ad-intersitial
+        {
+            display: block;
+            width: 300px;
+            height: 250px;
+            margin:auto;
+        }
+
     </style>
 </head>
 <body>
 <div id="content">
+    <div id="ad-intersitial"></div>
     <div class="polaroid-frame">
         <form enctype="multipart/form-data" method="POST">
             <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
@@ -231,6 +268,7 @@
                 <div class="polaroid-buttons">
                     <input type="button" class="button-orange" id="inpaint" value="inpaint" />
                     <input type="button" class="button-orange" id="reset" value="reset" />
+                    <input type="button" class="button-orange" id="undo" value="undo" />
                     <input type="button" class="button-orange" id="galery" value="galery" />
                 </div>
             </div>
@@ -253,9 +291,16 @@
         </div>
     </div>
 </div>
+<!-- Ad frame -->
+<div class="test-ad-frame" id="ad-banner">
+    <div class="test-ad-banner"></div>
+</div>
+<script class="jsbin" src="js/jquery.min.js"></script>
 <script defer src="js/index.js"></script>
 <script defer src="js/inpaint.js"></script>
 <script defer src="js/MaskHandler.js"></script>
 <script defer src="js/ImageHandler.js"></script>
+<script defer src="js/AdHandler.js"></script>
+<script src="cordova.js"></script>
 </body>
 </html>

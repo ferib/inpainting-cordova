@@ -1,4 +1,4 @@
-let Inpaint = function () {
+var Inpaint = function () {
 
     let options = {
         iterations: 3     //default is 100 (ms)
@@ -11,6 +11,10 @@ let Inpaint = function () {
     };
 
     let _inpaintDone = function(result, callback) {
+
+        //Hide Add
+        AdHandler.hideInpaintProcessAd();
+
         if(result == null)
         {
             //Do correct error handeling... or prevent user from clicking #Inpaint when no img is selected
@@ -28,6 +32,10 @@ let Inpaint = function () {
     };
 
     let _inpaintImage = function(imagefile, maskfile, callback) {
+
+
+        //Show Add
+        AdHandler.initInpaintProcessAd();
 
         var funcResult = null;
         var fd = new FormData();
