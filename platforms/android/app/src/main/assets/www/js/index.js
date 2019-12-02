@@ -119,6 +119,7 @@ $(function(){
         $('#preview').addClass("img-busy");
         $("#inpaint").attr("disabled",true);
         $("#reset").attr("disabled",true);
+        $("#undo").attr("disabled",true);
         $("#galery").attr("disabled",true);
 
         $('#mask').attr("src", MaskHandler.getCanvas().toDataURL())
@@ -135,6 +136,7 @@ $(function(){
             $("#mask").addClass("mask-finished");
             $("#inpaint").attr("disabled",false);
             $("#reset").attr("disabled",false);
+            $("#undo").attr("disabled",false);
             $("#galery").attr("disabled",false);
         });
     });
@@ -186,7 +188,7 @@ $(function(){
         if(c != null)
         {
             let f = c.width / $(this).width();
-            MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f);
+            //MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f); //WARNING: this conflicts with mobile, gets called there
         }
     }).mousemove(function(e){
         let c = MaskHandler.getCanvas();
@@ -200,32 +202,23 @@ $(function(){
     }).mouseup(function(e){
         MaskHandler.OnMouseUp(e);
     }).on({ 'touchstart' :function(e) {
+        console.log("start " + MaskHandler.paints());
         let c = MaskHandler.getCanvas();
         if (c != null) {
             let f = c.width / $(this).width();
             MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f);
         }
     }}).on({ 'touchmove' :function(e) {
-            let c = MaskHandler.getCanvas();
-            if (c != null) {
-                let f = c.width / $(this).width();
-                MaskHandler.OnMouseMove(e, this.offsetLeft, this.offsetTop, f);
-            }
-    }}).on({ 'touchup' :function (e) {
-        MaskHandler.OnMouseLeave(e);
-    }});
-/*
-    $('#preview').touchstart(function (e){
+        console.log("move " + MaskHandler.paints());
         let c = MaskHandler.getCanvas();
-        if(c != null)
-        {
+        if (c != null) {
             let f = c.width / $(this).width();
-            MaskHandler.OnMouseDown(e, this.offsetLeft, this.offsetTop, f);
+            MaskHandler.OnMouseMove(e, this.offsetLeft, this.offsetTop, f);
         }
-    }).bind('touchend', function(e){
-        MaskHandler.OnMouseUp();
-    });
-*/
+    }}).on({ 'touchend' :function (e) {
+        MaskHandler.OnMouseUp(e);
+        console.log("up " + MaskHandler.paints());
+    }});
 });
 
 function updateGalery(){
@@ -236,7 +229,7 @@ function updateGalery(){
     for(let i = 0; i < window.localStorage.length; i++)
     {
         let currentItem = window.localStorage.getItem("ls-img-id-" + i);
-        if(currentItem != null && currentItem != "removed")
+        if(currentItem != null && currentItem !== "removed")
         {
             $("#galery-list").prepend( "<li><div class='img-box'><span class='close' id='ls-img-id-" + i + "'>&times;</span><img class='galery-img' src=" + currentItem + "></div></li>");
         }

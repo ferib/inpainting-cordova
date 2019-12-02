@@ -1,20 +1,20 @@
 let AdHandler = function () {
 
-    let AdBannerTimeout = 120000; //90sec
+    let AdBannerTimeout = 120000; //2min
     let AdBannerParent = "#ad-banner";
     let AdIntersitialParent = "#ad-intersitial";
 
     let _init = function(){
         admob.banner.config({
             id: 'ca-app-pub-8014088211781182/4099653614',
-            isTesting: true,
+            //isTesting: true,
             overlap: true,
             autoShow: true
         });
 
         admob.interstitial.config({
             id: 'ca-app-pub-8014088211781182/9599747523',
-            isTesting: true,
+            //isTesting: true,
             autoShow: false
         });
 

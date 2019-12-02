@@ -8,13 +8,17 @@
     <style>
         body{
             margin: auto;
-            background-color: #eee;
+            /*background-color: #eee;*/
+            background-color: #bdbdbd;
             padding-bottom: 50px;
         }
         .button-orange {
-            border: 1px solid #AD3B1F;
-            background-color: #df4b26;
-            color: #eee;
+            /*border: 1px solid #AD3B1F;*/
+            border: 1px solid #335657;
+            /*background-color: #df4b26;*/
+            background-color: #5f9ea0;
+            /*color: #eee;*/
+            color: #111;
             margin:auto;
             margin-bottom: 4px;
             width: 100%;
@@ -41,7 +45,8 @@
             width: 25px;
             height: 25px;
             border-radius: 50%;
-            background: #df4b26;
+            /*background: #df4b26;*/
+            background: #5f9ea0;
             cursor: pointer;
         }
 
@@ -49,7 +54,8 @@
             width: 25px;
             height: 25px;
             border-radius: 50%;
-            background: #df4b26;
+            /*background: #df4b26;*/
+            background: #5f9ea0;
             cursor: pointer;
         }
         #content {
@@ -80,8 +86,10 @@
             margin-bottom: 5px;
             background-size: contain;
             background-repeat: no-repeat;
-            color: #dedede;
-            background-color: #333;
+            color: #5f9ea0;
+            /*background-color: #333;*/
+            /*background-color: #5f9ea0;*/
+            background-color: #353535;
         }
         .preview-note
         {
@@ -125,14 +133,14 @@
             /*border-color: grey;
             border-style: solid;
             border-radius: 6px;
-            border-width: 3px;*/
-            background-color: #fefefe;
+            border-width: 3px;
+            background-color: #fefefe;*/
             padding: 3px;
         }
         #polaroid-footer
         {
             height: auto;
-            background-color: #fff;
+            /*background-color: #fff;*/
         }
         #img-galery
         {
@@ -255,7 +263,7 @@
             <div class="preview" id="preview">
                 <div class="preview-note" id="preview-note">
                     <h1>Mobile inpainting</h1>
-                    Tap Here<br><span style="font-size: 30px">To Take a Picture</span>
+                    Tap Here<br><span style="font-size: 30px">To Select a Picture</span>
                 </div>
                 <input name="Image" id="Image" type="file"/>
                 <img id="mask" class="mask-finished">
@@ -263,7 +271,7 @@
             <!-- <div id="polaroid-footer"> -->
             <div id="polaroid-footer">
                 <div class="polaroid-slider">
-                    <input class="slider-orange" type="range" min="10" max="70" value="20" class="masksize-slider" id="masksize-slider">
+                    <input class="slider-orange masksize-slider" type="range" min="10" max="70" value="20" id="masksize-slider">
                 </div>
                 <div class="polaroid-buttons">
                     <input type="button" class="button-orange" id="inpaint" value="inpaint" />

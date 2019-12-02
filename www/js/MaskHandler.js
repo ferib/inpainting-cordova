@@ -1,4 +1,4 @@
-let MaskHandler = function () {
+let MaskHandlerOLD = function () {
     let canvas;
     let clickX;
     let clickY;
@@ -7,11 +7,15 @@ let MaskHandler = function () {
     let dotWidth;
     let sLineWidth = 20;
 
+    let linePart; //weird way to identify shiet
+    let lineID = 0; //increases to identify what dots belongs to which (visible) line
+
     let _init = function(){
         clickX = [];
         clickY = [];
         clickDrag = [];
         dotWidth = [];
+        linePart = [];
     };
 
     //TEST1: document.getElementById("preview").appendChild(canvas)
@@ -40,25 +44,36 @@ let MaskHandler = function () {
     };
 
     //clears the mask
-   let _clearMask = function(){
-       if(canvas == null)
-       {
-           console.log("_clearMask: Canvas not set");
-           return;
-       }
-       clickX.length = 0;
-       clickY.length = 0;
-       clickDrag.length = 0;
-       dotWidth.length = 0;
-       let context = canvas.getContext("2d");
-       context.clearRect(0, 0, context.canvas.width, context.canvas.height); //Clear canvas
-   };
+    let _clearMask = function(count){
+
+        if(canvas == null)
+        {
+            console.log("_clearMask: Canvas not set");
+            return;
+        }
+        if(!count)
+            count = 0;
+        clickX.length = count;
+        clickY.length = count;
+        clickDrag.length = count;
+        dotWidth.length = count;
+        linePart.length = count;
+        if(count === 0)
+        {
+            let context = canvas.getContext("2d");
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height); //Clear canvas
+        }else{
+            _reDraw();
+        }
+
+    };
 
     let _addClick = function(x, y, dragging){
         clickX.push(x);
         clickY.push(y);
         clickDrag.push(dragging);
         dotWidth.push(sLineWidth);
+        linePart.push(lineID);
     };
 
     let _reDraw = function(){
@@ -70,7 +85,7 @@ let MaskHandler = function () {
         let context = canvas.getContext("2d");
         context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 
-        context.strokeStyle = "#df4b26";
+        context.strokeStyle = "#8510d8";
         context.lineJoin = "round";
         //context.lineWidth = sLineWidth;
 
@@ -91,20 +106,20 @@ let MaskHandler = function () {
     let _setLineWidth = function(newLineWith)
     {
         sLineWidth = newLineWith;
-        dotWidth[dotWidth.length-1] = sLineWidth;
+        //dotWidth[dotWidth.length-1] = sLineWidth;
         _reDraw();
     };
 
-   //converts canvas to blob
-   let _canvasToFile = function(){
-       if(canvas == null)
-       {
-           console.log("_canvasToFile: Canvas not set");
-           return;
-       }
+    //converts canvas to blob
+    let _canvasToFile = function(){
+        if(canvas == null)
+        {
+            console.log("_canvasToFile: Canvas not set");
+            return;
+        }
         var canvasBase64 = canvas.toDataURL();
         return convertBase64ToFile(canvasBase64);
-   };
+    };
 
     //snippets from Stackoverflow
     const convertBase64ToFile = function (image) {
@@ -132,18 +147,30 @@ let MaskHandler = function () {
 
     //MouseEvents for Drawing
     let _OnMouseDown = function(e, offsetLeft, offsetTop, f){
-        let mouseX = (e.pageX - offsetLeft) * f;
-        let mouseY = (e.pageY - offsetTop) * f;
-
+        lineID++;
         paint = true;
-        _addClick(mouseX, mouseY);
-        _reDraw();
+        if(e.pageX)
+        {
+            _addClick((e.pageX - offsetLeft) * f, (e.pageY - offsetTop) * f);
+            _reDraw();
+        }else if(e.originalEvent.changedTouches)
+        {
+            _addClick((e.originalEvent.changedTouches[0].pageX - offsetLeft) * f, (e.originalEvent.changedTouches[0].pageY - offsetTop) * f);
+            _reDraw();
+        }
     };
 
     let _OnMouseMove = function(e, offsetLeft, offsetTop, f){
         if(paint) {
-            _addClick((e.pageX - offsetLeft) * f, (e.pageY - offsetTop) * f, true);
-            _reDraw();
+            if(e.pageX)
+            {
+                _addClick((e.pageX - offsetLeft) * f, (e.pageY - offsetTop) * f, true);
+                _reDraw();
+            }else if(e.originalEvent.changedTouches)
+            {
+                _addClick((e.originalEvent.changedTouches[0].pageX - offsetLeft) * f, (e.originalEvent.changedTouches[0].pageY - offsetTop) * f, true);
+                _reDraw();
+            }
         }
     };
 
@@ -170,18 +197,20 @@ let MaskHandler = function () {
     };
 
     let _removeLastPaint = function (){
-        let LastSize = dotWidth[dotWidth.length-1];
-        for(let i=dotWidth.length; i >= 0; i++) {
-            if(dotWidth[i] !== LastSize)
+        let LastPartID = linePart[linePart.length-1];
+        let PartIdCount = 0;
+
+        for(let i=0; i < linePart.length; i++) {
+            if(linePart[i] === LastPartID)
             {
-                clickX.length = i;
-                clickY.length = i;
-                clickDrag.length = i;
-                dotWidth.length = i;
-                _reDraw();
-                break;
+                PartIdCount++;
             }
         }
+        _clearMask(linePart.length-PartIdCount);
+    };
+
+    let _paints = function(){
+        return paint;
     };
 
     return {
@@ -200,7 +229,335 @@ let MaskHandler = function () {
         setLineWidth: _setLineWidth,
         removeCanvas: _removeCanvas,
         isCanvasUsed: _isCanvasUsed,
+        paints: _paints,
         removeLastPaint: _removeLastPaint
+    };
+}();
+
+
+let MaskHandler = function () {
+    let canvas;
+    let clickX;
+    let clickY;
+    let clickDrag;
+    let paint;
+    let dotWidth;
+    let sLineWidth = 20;
+    let dotX;
+    let dotY;
+    let lastClickX;
+    let lastClickY;
+
+    let linePart; //weird way to identify shiet
+    let lineID = 0; //increases to identify what dots belongs to which (visible) line
+
+    let _init = function(){
+        clickX = [];
+        clickY = [];
+        clickDrag = [];
+        dotWidth = [];
+        linePart = [];
+    };
+
+    //TEST1: document.getElementById("preview").appendChild(canvas)
+    //TEST2: MaskHandler.setCanvas(document.getElementById("preview"));
+    let _setCanvas = function(ParentObj)
+    {
+        canvas = document.createElement("canvas");
+        canvas.setAttribute("id","canvas");
+        ParentObj.appendChild(canvas);
+    };
+
+    let _removeCanvas = function(ParentObj)
+    {
+        //canvas.style.display = 'none';
+        //canvas = null;
+    };
+
+    let _canvasResize = function(width, height){
+        if(canvas == null)
+        {
+            console.log("_canvasResize: Canvas not set");
+            return;
+        }
+        canvas.setAttribute("width", width);
+        canvas.setAttribute("height",height);
+    };
+
+    //clears the mask
+    let _clearMask = function(count){
+
+        if(canvas == null)
+        {
+            console.log("_clearMask: Canvas not set");
+            return;
+        }
+        if(!count)
+            count = 0;
+        clickX.length = count;
+        clickY.length = count;
+        clickDrag.length = count;
+        dotWidth.length = count;
+        linePart.length = count;
+        if(count === 0)
+        {
+            let context = canvas.getContext("2d");
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height); //Clear canvas
+        }else{
+            _reDraw();
+        }
+
+    };
+
+    let _initDot = function(x, y)
+    {
+        if(!dotX && !dotY)
+        {
+            console.log("dot placed at " + x + "," + y);
+            dotX = x;
+            dotY = y;
+        }
+    };
+
+    let _killDot = function()
+    {
+        if(dotX && dotY)
+        {
+            dotX = null;
+            dotY = null;
+        }
+    };
+
+    let _isDotActive = function()
+    {
+        return dotX != null;
+    };
+
+    let _geDotXY = function()
+    {
+        return {dotX, dotY};
+    };
+
+    let _addClick = function(x, y, dragging){
+        clickX.push(x);
+        clickY.push(y);
+        clickDrag.push(dragging);
+        dotWidth.push(sLineWidth);
+        linePart.push(lineID);
+    };
+
+    let _reDraw = function(){
+        if(canvas == null)
+        {
+            console.log("_reDraw: Canvas not set");
+            return;
+        }
+        let context = canvas.getContext("2d");
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+
+        context.strokeStyle = "#8510d8";
+        context.lineJoin = "round";
+        //context.lineWidth = sLineWidth;
+
+        for(let i=0; i < clickX.length; i++) {
+            context.beginPath();
+            context.lineWidth = dotWidth[i];
+            if(clickX[i] === dotX && clickY[i] === dotY)
+                context.strokeStyle = "#5f9ea0";
+            if(clickDrag[i] && i){
+                context.moveTo(clickX[i-1], clickY[i-1]);
+            }else{
+                context.moveTo(clickX[i]-1, clickY[i]);
+            }
+            context.lineTo(clickX[i], clickY[i]);
+            context.closePath();
+            context.stroke();
+        }
+    };
+
+    let _setLineWidth = function(newLineWith)
+    {
+        sLineWidth = newLineWith;
+        dotWidth[dotWidth.length-1] = sLineWidth;
+        _reDraw();
+    };
+
+    //converts canvas to blob
+    let _canvasToFile = function(){
+        if(canvas == null)
+        {
+            console.log("_canvasToFile: Canvas not set");
+            return;
+        }
+        var canvasBase64 = canvas.toDataURL();
+        return convertBase64ToFile(canvasBase64);
+    };
+
+    //snippets from Stackoverflow
+    const convertBase64ToFile = function (image) {
+        const byteString = atob(image.split(',')[1]);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i += 1) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ab], {
+            type: 'image/png',
+        });
+    };
+
+    //snippets from Stackoverflow
+    function _arrayBufferToBase64( buffer ) {
+        let binary = '';
+        let bytes = new Uint8Array( buffer );
+        let len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode( bytes[ i ] );
+        }
+        return window.btoa( binary );
+    }
+
+    //MouseEvents for Drawing
+    let _OnMouseDown = function(e, offsetLeft, offsetTop, f){
+        lineID++;
+        paint = true;
+        if(e.pageX)
+        {
+            lastClickX = (e.pageX - offsetLeft) * f;
+            lastClickY = (e.pageY - offsetLeft) * f;
+            if(!_isDotActive())
+            {
+                _addClick(lastClickX, lastClickY);
+                _initDot(lastClickX, lastClickY);
+            }else{
+                let dist = Math.sqrt(((lastClickX - dotX)*(lastClickX - dotX)) + ((lastClickY - dotY)*(lastClickY - dotY)));
+                if(dist <= sLineWidth * 0.55)
+                {
+                    _killDot();
+                }
+            }
+            _reDraw();
+        }else if(e.originalEvent.changedTouches)
+        {
+            lastClickX = (e.originalEvent.changedTouches[0].pageX - offsetLeft) * f;
+            lastClickY = (e.originalEvent.changedTouches[0].pageY - offsetLeft) * f;
+            if(!_isDotActive())
+            {
+                _addClick(lastClickX, lastClickY);
+                _initDot(lastClickX, lastClickY);
+            }else{
+                let dist = Math.sqrt(((lastClickX - dotX)*(lastClickX - dotX)) + ((lastClickY - dotY)*(lastClickY - dotY)));
+                console.log("distance: " + dist);
+                if(dist <= sLineWidth * 0.55)
+                {
+                    _killDot();
+                    console.log("kill");
+                }
+            }
+            _reDraw();
+        }
+    };
+
+    let _OnMouseMove = function(e, offsetLeft, offsetTop, f){
+        if(paint) {
+            if(e.pageX)
+            {
+                if(_isDotActive())
+                {
+                    //Do math :D
+                    let newDotX = dotX + (((e.pageX - offsetLeft) * f) - lastClickX);
+                    let newDotY = dotY + (((e.pageY - offsetLeft) * f) - lastClickY);
+
+                    _addClick(newDotX, newDotY, true);
+                    dotX = newDotX;
+                    dotY = newDotY;
+                    //_addClick((e.originalEvent.changedTouches[0].pageX - offsetLeft) * f, (e.originalEvent.changedTouches[0].pageY - offsetTop) * f, true);
+                    lastClickX = (e.pageX - offsetLeft) * f;
+                    lastClickY = (e.pageY - offsetLeft) * f;
+                    _reDraw();
+                }
+                _reDraw();
+            }else if(e.originalEvent.changedTouches)
+            {
+                if(_isDotActive())
+                {
+                    //Do Math :D
+                    let newDotX = dotX + (((e.originalEvent.changedTouches[0].pageX - offsetLeft) * f) - lastClickX);
+                    let newDotY = dotY + (((e.originalEvent.changedTouches[0].pageY - offsetLeft) * f) - lastClickY);
+
+                    _addClick(newDotX, newDotY, true);
+                    dotX = newDotX;
+                    dotY = newDotY;
+                    //_addClick((e.originalEvent.changedTouches[0].pageX - offsetLeft) * f, (e.originalEvent.changedTouches[0].pageY - offsetTop) * f, true);
+                    lastClickX = (e.originalEvent.changedTouches[0].pageX - offsetLeft) * f;
+                    lastClickY = (e.originalEvent.changedTouches[0].pageY - offsetLeft) * f;
+                    _reDraw();
+                }
+            }
+        }
+    };
+
+    let _OnMouseUp = function(e)
+    {
+        paint = false;
+    };
+
+    let _OnMouseLeave = function(e) {
+        paint = false;
+    };
+
+    let _getCanvas = function(){
+        if(canvas == null)
+        {
+            console.log("_getCanvas: Canvas not set");
+            return;
+        }
+        return canvas;
+    };
+
+    let _isCanvasUsed = function () {
+        return clickX.length > 0;
+    };
+
+    let _removeLastPaint = function (){
+        let LastPartID = linePart[linePart.length-1];
+        let PartIdCount = 0;
+
+        for(let i=0; i < linePart.length; i++) {
+            if(linePart[i] === LastPartID)
+            {
+                PartIdCount++;
+            }
+        }
+        _clearMask(linePart.length-PartIdCount);
+    };
+
+    let _paints = function(){
+        return paint;
+    };
+
+    return {
+        init: _init,
+        canvasResize: _canvasResize,
+        clearMask: _clearMask,
+        canvasToFile: _canvasToFile,
+        addClick: _addClick,
+        reDraw: _reDraw,
+        OnMouseDown: _OnMouseDown,
+        OnMouseMove: _OnMouseMove,
+        OnMouseUp: _OnMouseUp,
+        OnMouseLeave: _OnMouseLeave,
+        setCanvas: _setCanvas,
+        getCanvas: _getCanvas,
+        setLineWidth: _setLineWidth,
+        removeCanvas: _removeCanvas,
+        isCanvasUsed: _isCanvasUsed,
+        paints: _paints,
+        removeLastPaint: _removeLastPaint,
+        isDotActive: _isDotActive,
+        initDot: _initDot,
+        killDot: _killDot,
+        getDotXY: _geDotXY
     };
 }();
 
