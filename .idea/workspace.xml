@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e7fabde-9338-4583-a504-dbba74811d0b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/android.json" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/android.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/MaskHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/MaskHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/MaskHandler.js" afterDir="false" />
-    </list>
+    <list default="true" id="3e7fabde-9338-4583-a504-dbba74811d0b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,6 +79,7 @@
       <workItem from="1574951679176" duration="763000" />
       <workItem from="1575294538383" duration="16998000" />
       <workItem from="1575546007092" duration="54000" />
+      <workItem from="1577049032920" duration="338000" />
     </task>
     <servers />
   </component>
