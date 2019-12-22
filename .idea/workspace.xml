@@ -3,18 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3e7fabde-9338-4583-a504-dbba74811d0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/AdHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/AdHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platforms/android/android.json" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/android.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/MaskHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/AdHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/AdHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/MaskHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platforms/browser/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/browser/www/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/AdHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/AdHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/js/MaskHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/MaskHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +83,8 @@
       <workItem from="1574525806086" duration="1294000" />
       <workItem from="1574600001651" duration="1078000" />
       <workItem from="1574951679176" duration="763000" />
-      <workItem from="1575294538383" duration="10419000" />
+      <workItem from="1575294538383" duration="16998000" />
+      <workItem from="1575546007092" duration="54000" />
     </task>
     <servers />
   </component>
@@ -110,5 +103,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="743" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1575546058601">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="743" y="310" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1575546058601" />
+    <state x="616" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1575546042670">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="616" y="380" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1575546042670" />
   </component>
 </project>

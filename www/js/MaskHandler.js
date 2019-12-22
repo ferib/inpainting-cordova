@@ -303,7 +303,11 @@ let MaskHandler = function () {
         {
             let context = canvas.getContext("2d");
             context.clearRect(0, 0, context.canvas.width, context.canvas.height); //Clear canvas
+            _killDot(); //kill dot
         }else{
+            //set dot to last
+            dotX = clickX[clickX.length-1];
+            dotY = clickY[clickY.length-1];
             _reDraw();
         }
 
@@ -378,7 +382,8 @@ let MaskHandler = function () {
     let _setLineWidth = function(newLineWith)
     {
         sLineWidth = newLineWith;
-        dotWidth[dotWidth.length-1] = sLineWidth;
+        if(_isDotActive())
+            dotWidth[dotWidth.length-1] = sLineWidth;
         _reDraw();
     };
 
@@ -389,8 +394,25 @@ let MaskHandler = function () {
             console.log("_canvasToFile: Canvas not set");
             return;
         }
+        //notify!
+        //TODO: add option to ignore/dismiss
+        if(_getPaintAmount() > 60000)
+            alert("WARNING: you used to much paint and the image processing might fail, please select a smaller area if the results aren't good.\nFYI: you can process a image multiple times");
         var canvasBase64 = canvas.toDataURL();
         return convertBase64ToFile(canvasBase64);
+    };
+
+    //Warn user when he s using to much paint! (server might not be able to handle in time)
+    let _getPaintAmount = function()
+    {
+        let lineDistance = 0;
+        for(let i = 0; i < clickX.length; i++)
+        {
+            if(clickDrag[i] && i){
+                lineDistance = lineDistance + (Math.sqrt(((clickX[i] - clickX[i-1])*(clickX[i] - clickX[i-1])) + ((clickY[i] - clickY[i-1])*(clickY[i] - clickY[i-1]))) * dotWidth[i]);
+            }
+        }
+        return lineDistance
     };
 
     //snippets from Stackoverflow
@@ -529,6 +551,7 @@ let MaskHandler = function () {
                 PartIdCount++;
             }
         }
+
         _clearMask(linePart.length-PartIdCount);
     };
 
@@ -557,7 +580,8 @@ let MaskHandler = function () {
         isDotActive: _isDotActive,
         initDot: _initDot,
         killDot: _killDot,
-        getDotXY: _geDotXY
+        getDotXY: _geDotXY,
+        getPaintAmount: _getPaintAmount
     };
 }();
 
